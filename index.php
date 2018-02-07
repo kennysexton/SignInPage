@@ -8,7 +8,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../../../../favicon.ico">
 
-    <title>Signin Template for Bootstrap</title>
+    <title>CIS 3238 Lab 2</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -55,6 +55,5 @@
       <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
     </form>
 	
-	<!-- ResetPassword -->
   </body>
 </html>
