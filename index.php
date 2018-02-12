@@ -1,4 +1,13 @@
-
+<?php
+	session_start();
+	if (!isset ($_SESSION["RegState"])) $_SESSION["RegState"] = 0;
+	// 0: Not registered
+	// 1: Registered, email+ACode sent 
+	// 2: Email and Acode verified 
+	// 3: Password saved 
+	// 4: Logged in
+	// <0 Errors
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -21,17 +30,32 @@
   </head>
   <script>
 	  $(document).ready(function(){
-		var RegState = <?php echo $_SESSION["RegState"]; ?>
+		var RegState = <?php echo $_SESSION["RegState"]; ?>;
 		alert("RegState = ["+RegState+"]");
 		if (RegState == 0 || RegState == 1){
 			$("#LoginView").show();
 			$("#RegistrationView").hide();
 			$("#SetPasswordView").hide();
 		}
+		$("#Register").click(function(){
+			$("#LoginView").hide();
+			$("#RegistrationView").show();
+			$("#SetPasswordView").hide();
+		});
+		$("#ForgotPass").click(function(){
+			$("#LoginView").hide();
+			$("#RegistrationView").hide();
+			$("#SetPasswordView").show();
+		});
+		$("Lab2Back.").click(function(){
+			$("#LoginView").show();
+			$("#RegistrationView").hide();
+			$("#SetPasswordView").hide();
+		});
 	  });
   </script>
   <body class="text-center">
- 
+ 	
     <!-- LoginView -->
     <form id="LoginView" action="http://cis-linux2.temple.edu/~tuf92968/lab2/php/login.php" class="form-signin" method="post">
       <img class="mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
@@ -46,7 +70,8 @@
         </label>
       </div>
       <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-      <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
+	  <button id="Register" class="btn btn-small btn-information">Register</button>
+	  <button id="ForgotPass" class="btn btn-small btn-information">Forget Password</button>
     </form>
 	
 	<!-- RegistrationView -->
@@ -56,6 +81,7 @@
       <label for="inputEmail2" class="sr-only">Email address</label>
       <input type="email" id="inputEmail2" class="form-control" name="Email" placeholder="Email address" required autofocus>
       <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+	  <button class="btn btn-small btn-information Lab2Back">back</button>
     </form>
 	
 	<!-- SetPasswordView -->
@@ -65,7 +91,7 @@
       <label for="inputPassword" class="sr-only">Password</label>
       <input type="password" id="inputPassword2" name="Password" class="form-control" placeholder="Password" required autofocus>
       <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-      <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
+      <button class="btn btn-small btn-information Lab2Back">back</button>
     </form>
 	
   </body>
