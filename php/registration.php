@@ -3,12 +3,13 @@
 	require_once("config.php");
 	
 	// Fetch web data
-	$Email= $_GET["Email"];
+	$Email = $_GET["Email"];
 	print "From PHP, I got email ($Email) <br>";
 	
 	// Conect to MYSQL
 	$con = my_sqli_connect(SERVER, USER, PASSWORD, DATABASE);
 	if (!$con){
+		print "Connection Failed <br>";
 		die("Connection Failure".mysqli_connect_error());
 	}
 	print "Database connected !!! <br>";

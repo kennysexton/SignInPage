@@ -9,6 +9,9 @@
     <link rel="icon" href="../../../../favicon.ico">
 
     <title>CIS 3238 Lab 2</title>
+	
+	<!-- jQuery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -16,9 +19,20 @@
     <!-- Custom styles for this template -->
     <link href="css/signin.css" rel="stylesheet">
   </head>
-
-  <!-- LoginView -->
+  <script>
+	  $(document).ready(function(){
+		var RegState = <?php echo $_SESSION["RegState"]; ?>
+		alert("RegState = ["+RegState+"]");
+		if (RegState == 0 || RegState == 1){
+			$("#LoginView").show();
+			$("#RegistrationView").hide();
+			$("#SetPasswordView").hide();
+		}
+	  });
+  </script>
   <body class="text-center">
+ 
+    <!-- LoginView -->
     <form id="LoginView" action="http://cis-linux2.temple.edu/~tuf92968/lab2/php/login.php" class="form-signin" method="post">
       <img class="mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
       <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
@@ -36,13 +50,12 @@
     </form>
 	
 	<!-- RegistrationView -->
-	<form id="RegistrationView" action="http://cis-linux2.temple.edu/~tuf92968/lab2/php/registration.php" class="form-signin" method="post">
+	<form id="RegistrationView" action="http://cis-linux2.temple.edu/~tuf92968/lab2/php/registration.php" class="form-signin" method="get">
       <img class="mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
       <h1 class="h3 mb-3 font-weight-normal">Please register</h1>
       <label for="inputEmail2" class="sr-only">Email address</label>
-      <input type="email" id="inputEmail2" class="form-control" placeholder="Email address" required autofocus>
+      <input type="email" id="inputEmail2" class="form-control" name="Email" placeholder="Email address" required autofocus>
       <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
-      <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
     </form>
 	
 	<!-- SetPasswordView -->
