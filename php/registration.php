@@ -30,7 +30,7 @@
 	// Ready to send email
 	$to = $Email;
 	$subject = "Welcome";
-	$headers = "From: tuf92968@temple.edu" . "\r\n" .
+	$headers = "From: kennys@temple.edu" . "\r\n" .
 		"CC: ";
 	mail($to,$subject,$msg,$headers);
 	
