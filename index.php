@@ -47,7 +47,7 @@
 			$("#RegistrationView").hide();
 			$("#SetPasswordView").show();
 		});
-		$("Lab2Back.").click(function(){
+		$(".Lab2Back").click(function(){
 			$("#LoginView").show();
 			$("#RegistrationView").hide();
 			$("#SetPasswordView").hide();
