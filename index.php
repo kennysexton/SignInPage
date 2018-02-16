@@ -1,5 +1,4 @@
 <?php
-	header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
 	session_start();
 	if (!isset ($_SESSION["RegState"])) $_SESSION["RegState"] = 0;
 	// 0: Not registered
@@ -33,7 +32,10 @@
 	  $(document).ready(function(){
 		var RegState = <?php echo $_SESSION["RegState"]; ?>;
 		alert("RegState = ["+RegState+"]");
-		if (RegState == 0 || RegState == 1){
+		
+		if (RegState == 0 || RegState == 1 || RegState == 3){
+			
+			
 			$("#LoginView").show();
 			$("#RegistrationView").hide();
 			$("#SetPasswordView").hide();
@@ -53,10 +55,20 @@
 			$("#RegistrationView").hide();
 			$("#SetPasswordView").hide();
 		});
+		if (RegState == 2){
+			$("#LoginView").hide();
+			$("#RegistrationView").hide();
+			$("#SetPasswordView").show();
+		}
 	  });
   </script>
+  <script> // for hiding messages
+  function hide(){
+		document.getElementById("LoginMessage").style.display = "none";
+  }
+  </script>
   <body class="text-center">
- 	
+  <div class="container">
     <!-- LoginView -->
     <form id="LoginView" action="http://cis-linux2.temple.edu/~tuf92968/lab2/php/login.php" class="form-signin" method="post">
       <h1 class="h3 mb-3 text-lg-left">Please sign in</h1>
@@ -74,13 +86,14 @@
 	  <button id="ForgotPass" class="btn btn-small btn-information">Forget Password</button>
     </form>
 	
+	
 	<!-- RegistrationView -->
 	<form id="RegistrationView" action="http://cis-linux2.temple.edu/~tuf92968/lab2/php/registration.php" class="form-signin" method="get">
       <h1 class="h3 mb-3 text-lg-left">Please register</h1>
       <label for="inputEmail2" class="sr-only">Email address</label>
       <input type="email" id="inputEmail2" class="mb-3 form-control" name="Email" placeholder="Email address" required autofocus>
       <button class="mb-3 btn btn-lg btn-primary btn-block" type="submit">Register</button>
-	  <button class="btn btn-small btn-information Lab2Back">back</button>
+	  <button type="button" class="btn btn-small btn-information Lab2Back">back</button>
     </form>
 	
 	<!-- SetPasswordView -->
@@ -89,8 +102,17 @@
       <label for="inputPassword" class="sr-only">Password</label>
       <input type="password" id="inputPassword2" name="Password" class="form-control" placeholder="Password" required autofocus>
       <button class="mb-3 btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-      <button class="btn btn-small btn-information Lab2Back">back</button>
+      <button type="button "class="btn btn-small btn-information Lab2Back">back</button>
     </form>
 	
-  </body>
+	<div id="LoginMessage" class="mt-5 align-bottom alert alert-info alert-dismissible fade show" role="alert">
+		<button id="Close" type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="hide()"> 
+			<span aria-hidden="true">&times;</span>
+		</button>
+		<?php echo $_SESSION["Message"]; ?>
+	</div>
+	
+	
+  </div>
+</body>
 </html>

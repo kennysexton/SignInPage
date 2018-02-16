@@ -20,12 +20,14 @@
 	print "Query preped <br>";
 	$result = mysqli_query($con, $query);
 	if (!$result){
-			die("Insert Failed".mysqli_connect_error());
+		$_SESSION["Message"] = "Insert failed".mysqli_connect_error();
+		header("location: ../index.php");
+		exit();
 	}
 	print "Insert Worked !!! <br>";
 	
 	// Prepare email to authenticate
-	$msg = "Please click on the link to set password for your account: "."http://cis-linux2.temple.edu/~tuf92968/php/authenticate.php?Email=$Email&$Acode";
+	$msg = "Please click on the link to set password for your account: "."http://cis-linux2.temple.edu/~tuf92968/lab2/php/authenticate.php?Email=$Email&Acode=$Acode";
 	
 	// Ready to send email
 	$to = $Email;
@@ -35,7 +37,9 @@
 	mail($to,$subject,$msg,$headers);
 	
 	// Then What
+	$_SESSION["Message"] = "Registration Email sent to ($Email)";
 	$_SESSION["RegState"] = 1;
 	header("location: ../index.php");
-	exit();	
+	exit();
+	
 ?>

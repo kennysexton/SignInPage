@@ -24,6 +24,22 @@ form {
 	border-radius: 4px;
 }
 
+#wrap {
+  min-height: 100%;
+}
+
+#main {
+  overflow:auto;
+  padding-bottom:150px; /* this needs to be bigger than footer height*/
+}
+
+
+.LoginMessage{
+  position: fixed;
+  bottom: 0;
+  
+}
+
 .form-signin {
   width: 100%;
   max-width: 330px;
