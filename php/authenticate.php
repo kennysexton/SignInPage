@@ -1,9 +1,9 @@
 <?php
 	session_start();
 	require_once("config.php");
-	$_SESSION["UserEmail"]="";
 	$Email = $_GET["Email"];
 	$Acode = $_GET["Acode"];
+	$_SESSION["UserEmail"]="$Email";
 	
 	print "checkpoint 1 <br>";
 	
