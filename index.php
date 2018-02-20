@@ -33,32 +33,41 @@
 		var RegState = <?php echo $_SESSION["RegState"]; ?>;
 		alert("RegState = ["+RegState+"]");
 		
+				
 		if (RegState == 0 || RegState == 1 || RegState == 3){
-			
-			
 			$("#LoginView").show();
 			$("#RegistrationView").hide();
 			$("#SetPasswordView").hide();
+			$("#ForgetPasswordView").hide();
+			$("#ResetPasswordView").hide();	
 		}
 		$("#Register").click(function(){
 			$("#LoginView").hide();
 			$("#RegistrationView").show();
 			$("#SetPasswordView").hide();
+			$("#ForgetPasswordView").hide();
+			$("#ResetPasswordView").hide();
 		});
 		$("#ForgotPass").click(function(){
 			$("#LoginView").hide();
 			$("#RegistrationView").hide();
-			$("#SetPasswordView").show();
+			$("#SetPasswordView").hide();
+			$("#ForgetPasswordView").show();
+			$("#ResetPasswordView").hide();
 		});
 		$(".Lab2Back").click(function(){
 			$("#LoginView").show();
 			$("#RegistrationView").hide();
 			$("#SetPasswordView").hide();
+			$("#ForgetPasswordView").hide();
+			$("#ResetPasswordView").hide();
 		});
 		if (RegState == 2){
 			$("#LoginView").hide();
 			$("#RegistrationView").hide();
 			$("#SetPasswordView").show();
+			$("#ForgetPasswordView").hide();
+			$("#ResetPasswordView").hide();
 		}
 	  });
   </script>
@@ -101,7 +110,25 @@
       <h1 class="h3 mb-3 text-lg-left">Please set password</h1>
       <label for="inputPassword" class="sr-only">Password</label>
       <input type="password" id="inputPassword2" name="Password" class="form-control" placeholder="Password" required autofocus>
-      <button class="mb-3 btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+      <button class="mb-3 btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+      <button type="button "class="btn btn-small btn-information Lab2Back">back</button>
+    </form>
+	
+	<!-- ForgetPasswordView -->
+	<form id="ForgetPasswordView" action="http://cis-linux2.temple.edu/~tuf92968/lab2/php/setPassword.php" class="form-signin" method="post">
+      <h3 class="h3 mb-3 text-lg-left">Please set a new password</h3>
+      <label for="inputPassword" class="sr-only">Password</label>
+      <input type="password" id="inputPassword3" name="Password" class="form-control" placeholder="Password" required autofocus>
+      <button class="mb-3 btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+      <button type="button "class="btn btn-small btn-information Lab2Back">back</button>
+    </form>
+	
+	<!-- ResetPasswordView -->
+	<form id="ResetPasswordView" action="http://cis-linux2.temple.edu/~tuf92968/lab2/php/ResetPassword.php" class="form-signin" method="post">
+      <h1 class="h3 mb-3 text-lg-left">Please reset password</h1>
+      <label for="inputPassword" class="sr-only">Password</label>
+      <input type="password" id="inputPassword4" name="Password" class="form-control" placeholder="Password" required autofocus>
+      <button class="mb-3 btn btn-lg btn-primary btn-block" type="submit">Submit</button>
       <button type="button "class="btn btn-small btn-information Lab2Back">back</button>
     </form>
 	
