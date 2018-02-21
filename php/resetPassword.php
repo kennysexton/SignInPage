@@ -34,7 +34,7 @@
 		}
 		
 		// Password Set, Status Updated
-		$_SESSION["Message"] = "Password set";
+		$_SESSION["Message"] = "Password changed";
 		$_SESSION["RegState"] = 3;
 		header("location: ../index.php");
 		exit();

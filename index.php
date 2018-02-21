@@ -82,9 +82,9 @@
     <form id="LoginView" action="http://cis-linux2.temple.edu/~tuf92968/lab2/php/login.php" class="form-signin" method="post">
       <h1 class="h3 mb-3 text-lg-left">Please sign in</h1>
       <label for="inputEmail" class="sr-only">Email address</label>
-      <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+      <input type="email" id="inputEmail" class="form-control" placeholder="Email address" name="Email" required autofocus>
       <label for="inputPassword" class="sr-only">Password</label>
-      <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+      <input type="password" id="inputPassword" class="form-control" placeholder="Password" name="Password" required>
       <div class="checkbox mb-3">
         <label>
           <input type="checkbox" value="remember-me"> Remember me
@@ -124,9 +124,9 @@
     </form>
 	
 	<!-- ResetPasswordView -->
-	<form id="ResetPasswordView" action="http://cis-linux2.temple.edu/~tuf92968/lab2/php/ResetPassword.php" class="form-signin" method="post">
+	<form id="ResetPasswordView" action="http://cis-linux2.temple.edu/~tuf92968/lab2/php/resetPassword.php" class="form-signin" method="post">
       <h1 class="h3 mb-3 text-lg-left">Please reset password</h1>
-      <label for="inputPassword" class="sr-only">Password</label>
+      <label for="inputPassword" class="sr-only" name="Password">Password</label>
       <input type="password" id="inputPassword4" name="Password" class="form-control" placeholder="Password" required autofocus>
       <button class="mb-3 btn btn-lg btn-primary btn-block" type="submit">Submit</button>
       <button type="button "class="btn btn-small btn-information Lab2Back">back</button>
