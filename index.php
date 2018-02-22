@@ -31,10 +31,17 @@
   <script>
 	  $(document).ready(function(){
 		var RegState = <?php echo $_SESSION["RegState"]; ?>;
-		alert("RegState = ["+RegState+"]");
+		//var msg = <?php echo (!isset($_SESSION["Message"]));?>;
 		
+		// if (msg = 1){ // if not set then hide box
+			// $("#LoginMessage").hide();
+		// }
+		
+		// alert("RegState = ["+RegState+"]");
+		// alert("State = ["+msg+"]");
 				
-		if (RegState == 0 || RegState == 1 || RegState == 3){
+		
+		if (RegState == -1 || RegState == 0 || RegState == 1 || RegState == 3){
 			$("#LoginView").show();
 			$("#RegistrationView").hide();
 			$("#SetPasswordView").hide();
@@ -115,16 +122,16 @@
     </form>
 	
 	<!-- ForgetPasswordView -->
-	<form id="ForgetPasswordView" action="http://cis-linux2.temple.edu/~tuf92968/lab2/php/setPassword.php" class="form-signin" method="post">
-      <h3 class="h3 mb-3 text-lg-left">Please set a new password</h3>
-      <label for="inputPassword" class="sr-only">Password</label>
-      <input type="password" id="inputPassword3" name="Password" class="form-control" placeholder="Password" required autofocus>
+	<form id="ForgetPasswordView" action="http://cis-linux2.temple.edu/~tuf92968/lab2/php/forgetPassword.php" class="form-signin" method="get">
+      <h3 class="h3 mb-3 text-lg-left">Enter your Email address</h3>
+      <label for="inputEmail2" class="sr-only">Email address</label>
+      <input type="email" id="inputEmail2" class="mb-3 form-control" name="Email" placeholder="Email address" required autofocus>
       <button class="mb-3 btn btn-lg btn-primary btn-block" type="submit">Submit</button>
       <button type="button "class="btn btn-small btn-information Lab2Back">back</button>
     </form>
 	
 	<!-- ResetPasswordView -->
-	<form id="ResetPasswordView" action="http://cis-linux2.temple.edu/~tuf92968/lab2/php/resetPassword.php" class="form-signin" method="post">
+	<form id="ResetPasswordView" action="http://cis-linux2.temple.edu/~tuf92968/lab2/php/setPassword.php" class="form-signin" method="post">
       <h1 class="h3 mb-3 text-lg-left">Please reset password</h1>
       <label for="inputPassword" class="sr-only" name="Password">Password</label>
       <input type="password" id="inputPassword4" name="Password" class="form-control" placeholder="Password" required autofocus>

@@ -16,27 +16,40 @@
 	// Create a query
 	$Acode = rand();
 	$Rdatetime = date("Y-m-d h:i:s");
-	$query = "INSERT INTO Users (Email, Status, Acode, Rdatetime) VALUES ('$Email', 0, '$Acode', '$Rdatetime');";
-	print "Query preped <br>";
+	
+	// Select
+	$query = "select * from Users where Email='$Email';";
 	$result = mysqli_query($con, $query);
+	
+	
+	
 	if (!$result){
-		$_SESSION["Message"] = "email already in use".mysqli_connect_error();
+		$_SESSION["Message"] = "Insert failed".mysqli_connect_error();
 		header("location: ../index.php");
 		exit();
 	}
 	print "Insert Worked !!! <br>";
 	
-	// Prepare email to authenticate
+	//Update
+	$query2 = "UPDATE Users set Status=0, Acode='$Acode' where Email='$Email';";
+	$result = mysqli_query($con, $query2);
+	if (!$result){
+		$_SESSION["Message"] = "update failed".mysqli_connect_error();
+		header("location: ../index.php");
+		exit();
+	}
+	
+	//Prepare email to authenticate
 	$msg = "Please click on the link to set password for your account: "."http://cis-linux2.temple.edu/~tuf92968/lab2/php/authenticate.php?Email=$Email&Acode=$Acode";
 	
-	// Ready to send email
+	//Ready to send email
 	$to = $Email;
 	$subject = "Welcome";
 	$headers = "From: kennys@temple.edu" . "\r\n" .
 		"CC: ";
 	mail($to,$subject,$msg,$headers);
 	
-	// Then What
+	//Then What
 	$_SESSION["Message"] = "Registration Email sent to ($Email)";
 	$_SESSION["RegState"] = 1;
 	header("location: ../index.php");

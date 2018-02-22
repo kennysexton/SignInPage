@@ -17,13 +17,16 @@
 	}
 	print "checkpoint 2 <br>";
 	
+	// Query
 	$query = "select * from Users where Email='$Email' and ".
 		"Acode='$Acode';";
 	$result = mysqli_query($con, $query);
-
-	print "checkpoint 3 <br>";
 	
-	if ($result){
+	// Check for number of returns
+	$rows = mysqli_num_rows($result);
+	print "$row <br>"; 
+	
+	if ($rows == 1){
 		// Email and Acode checked out.  Set Adatetime new timestamp
 		
 		$Adatetime = date("Y-m-d h:i:s");
@@ -38,7 +41,7 @@
 		
 		if (!result2) {
 			$_SESSION["Message"] = "Client update failure: ".mysqli_connect_error();
-			$_SESSION["RegState"]= -2;
+			$_SESSION["RegState"]= -1;
 			header("location: ../index.php");
 			exit();
 		}
@@ -54,7 +57,7 @@
 	
 	// Query Failed
 	$_SESSION["Message"] =  "Authentication query failed: ".mysqli_error($con);
-	$_SESSION["RegState"] = -3;
+	$_SESSION["RegState"] = -1;
 	header("location: ../index.php");
 	exit();
 	

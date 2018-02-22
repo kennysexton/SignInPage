@@ -22,7 +22,7 @@
 	
 	if ($result){
 		
-		$query2 = "UPDATE Users set Status=3, Password='$Password';";
+		$query2 = "UPDATE Users set Status=3, Password='$Password' where Email='$Email';";
 		
 		$result2=mysqli_query($con, $query2);
 		
@@ -42,7 +42,7 @@
 	
 	// Query Failed
 	$_SESSION["Message"] =  "Failed to set password :".mysqli_error($con);
-	$_SESSION["RegState"] = -3;
+	$_SESSION["RegState"] = -1;
 	header("location: ../index.php");
 	exit();
 ?>

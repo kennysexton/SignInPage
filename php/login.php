@@ -4,9 +4,9 @@
 	
 		// Fetch web data
 	$Email = $_POST["Email"];
-	print "From PHP, I got email ($Email) <br>";
+	// print "From PHP, I got email ($Email) <br>";
 	$Password = $_POST["Password"];
-	print "From PHP, I got password ($Password) <br>";
+	// print "From PHP, I got password ($Password) <br>";
 	
 	// Conect to MYSQL
 	$con = mysqli_connect(SERVER, USER, PASSWORD, DATABASE);
@@ -16,26 +16,29 @@
 	print "Database connected !!! <br>";
 	
 	// Create a query
-	$query = "select * from Users where Email='$Email'";
+	$query = "select * from Users where Email='$Email' and ".
+		"Password='$Password'";
 	$result = mysqli_query($con, $query);
+	$rows = mysqli_num_rows($result);
+	print "$row <br>"; 
 	
-	
-	$row = mysqli_fetch_assoc($result);
-	echo "You have {$row['Users']} left! <br>";
-		
-	print "anything <br>";
-
 	if (!$result){
 		print "error : mysqli_error($con)";
 		$_SESSION["Message"] = "login failed!";
 	}
 	
-	if ($result){
+	if ($rows == 1){		
 		print "worked";
-		$_SESSION["Message"] = "loged-in!";
+		$_SESSION["Message"] = "logged-in!";
 		$_SESSION["RegState"] = 4;
 		header("location: ../php/service.php");
 		exit();
+	} else {
+		$_SESSION["Message"] = "Username and Password not found";
+		$_SESSION["RegState"] = 0;
+		header("location: ../index.php");
+		exit();
+	
 	}
 	
 	
